@@ -207,11 +207,3 @@ curl -X POST http://127.0.0.1:8000/api/route/ \
 
 ---
 
-##  Status
-
-✔ Fully functional
-✔ Tested with multiple routes
-✔ Handles edge cases
-✔ Ready for submission
-
----
