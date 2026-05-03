@@ -178,6 +178,8 @@ curl -X POST http://127.0.0.1:8000/api/route/ \
 * State detection is approximate (bounding boxes)
 * Fuel stations are filtered by state (not exact coordinates)
 
+“These assumptions can be easily relaxed in future iterations by introducing additional inputs or more precise geospatial logic.”
+
 ---
 
 ##  Possible Improvements
