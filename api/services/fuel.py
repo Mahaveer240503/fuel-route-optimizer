@@ -75,8 +75,7 @@ def _load_fuel_df() -> pd.DataFrame:
     return df
 
 
-# ─── Fuel Stop Selection ──────────────────────────────────────────────────────
-
+# Fuel Stop Selection 
 def _cheapest_station_in_states(df: pd.DataFrame, states: list[str]) -> dict | None:
     """
     From the DataFrame, find the single cheapest fuel station

@@ -55,7 +55,8 @@ class RouteView(APIView):
     """
 
     def post(self, request: Request) -> Response:
-        # ── Step 1: Validate Input ────────────────────────────────────────────
+        
+        #  Step 1: Validate Input 
         serializer = RouteRequestSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(
@@ -68,7 +69,7 @@ class RouteView(APIView):
 
         logger.info(f"Route request: '{start_city}' → '{end_city}'")
 
-        # ── Step 2: Geocode Both Cities ───────────────────────────────────────
+        #  Step 2: Geocode Both Cities 
         try:
             start_coords = geocode_city(start_city)   # (lat, lon)
             end_coords   = geocode_city(end_city)     # (lat, lon)
@@ -79,7 +80,7 @@ class RouteView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # ── Step 3: Fetch Route from ORS (1 external API call) ───────────────
+        #  Step 3: Fetch Route from ORS (1 external API call) 
         try:
             route = get_route(start_coords, end_coords)
         except ValueError as e:
@@ -92,7 +93,7 @@ class RouteView(APIView):
         distance_miles = route["distance_miles"]
         coordinates    = route["coordinates"]    # list of [lon, lat]
 
-        # ── Step 4: Determine States Along the Route ──────────────────────────
+        #  Step 4: Determine States Along the Route 
         # Sample the route geometry to find which US states it passes through.
         # No additional API calls — purely local bounding-box matching.
         states_along_route = sample_states_along_route(coordinates)
@@ -102,13 +103,13 @@ class RouteView(APIView):
         if not states_along_route:
             logger.warning("Could not determine any states from route geometry.")
 
-        # ── Step 5: Select Optimal Fuel Stops ────────────────────────────────
+        #  Step 5: Select Optimal Fuel Stops 
         fuel_stops = select_fuel_stops(distance_miles, states_along_route)
 
-        # ── Step 6: Calculate Total Cost ─────────────────────────────────────
+        #  Step 6: Calculate Total Cost 
         cost_result = calculate_total_cost(distance_miles, fuel_stops)
 
-        # ── Step 7: Build and Return Response ────────────────────────────────
+        #  Step 7: Build and Return Response 
         response_data = {
             "start":    start_city,
             "end":      end_city,

@@ -39,7 +39,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATIC_URL = "/static/"
 
-# ─── DRF config ──────────────────────────────────────────────────────────────
+# DRF config 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     # No authentication needed — this is a public API
@@ -48,7 +48,7 @@ REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
 }
 
-# ─── App-specific config ──────────────────────────────────────────────────────
+# App-specific config 
 # Path to the fuel-prices CSV (relative to BASE_DIR)
 FUEL_CSV_PATH = BASE_DIR / "data" / "fuel_prices.csv"
 
@@ -59,7 +59,7 @@ ORS_API_KEY = os.getenv("ORS_API_KEY", "")
 VEHICLE_RANGE_MILES = 500       # max miles per full tank
 FUEL_EFFICIENCY_MPG = 10        # miles per gallon
 
-# ─── Logging ──────────────────────────────────────────────────────────────────
+# Logging 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
