@@ -140,10 +140,16 @@ python manage.py runserver
   "end": "Houston, TX",
   "distance": 1080.9,
   "fuel_stops": [
-    {"location": "QUIKTRIP #605, Saint Louis, MO", "price": 2.899},
-    {"location": "7-ELEVEN #218, Harrold, TX", "price": 2.6873}
+    {
+      "location": "HUCKS FOOD & FUEL #379, Marion, IL",
+      "price": 2.929
+    },
+    {
+      "location": "7-ELEVEN #218, Harrold, TX",
+      "price": 2.6873
+    }
   ],
-  "total_cost": 279.31
+  "total_cost": 280.81
 }
 ```
 
